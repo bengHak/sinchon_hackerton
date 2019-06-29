@@ -25,19 +25,39 @@
             margin: 0;
             padding: 0;
         }
+        #mainTree{
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .myLog{
+            position: absolute;
+            top: 45vh;
+            left: 70vw;
+        }
     </style>
 </head>
 <body>
     <h1 class="ecoHeader">ECO-ZERO</h1>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <li class="breadcrumb-item"></li>
+    <a href="{% url 'signup' %}" class="btn btn-lg active btn-outline-success float-right" role="button" aria-pressed="true">회원가입</a>
+    <a href="{% url 'login' %}" class="btn btn-lg active btn-outline-success float-right" role="button" aria-pressed="true">로그인</a>
     {% comment %} 메인 페이지 컨텐츠 넣는 곳 {% endcomment %}
     <div class="main">
-        <img src="https://trello-attachments.s3.amazonaws.com/5d177650e2ac6b4fcc958412/1000x625/5ae854d0023e453e84eef07efe5d03db/image.png" alt="TreeLv5" width="80vw">
-
+        <img src="https://trello-attachments.s3.amazonaws.com/5d177650e2ac6b4fcc958412/1000x625/5ae854d0023e453e84eef07efe5d03db/image.png" alt="TreeLv5" width="50%" id="mainTree">
         <div class="myLog">
+
+            <!-- 이부분 변경 해야함-->
             <h3>오늘 : 3그루</h3>
             <h3>이번주 : 23그루</h3>
             <h3>이번달 : 93그루</h3>
+
         </div>
+        <br>
+        <br>
+
+         <a href="{% url 'checkpage' %}" class="btn btn-sm active btn-outline-success float-none" role="button" aria-pressed="true">check</a>
     </div>
 </body>
 </html>

@@ -1,17 +1,42 @@
-<div class="container">
-    <h1>Sign up</h1>
-    <br>
-    
-</div>
+<style>
+        body {
+            background-image : url('https://trello-attachments.s3.amazonaws.com/5d173ac4bd68ae357e5ee6b1/5d1755d38824792f573ecf92/581e5f3d63be11c5d995b9a7ae5af1df/image.png');
+            margin: 0;
+            padding: 0;
+        }
+        .main {
+            background-color: white;
+            height: 80vh;
+            margin-top: 10vh;
+            margin-bottom: 10vh;
+        }
+        .ecoHeader{
+            position: absolute;
+            color: white;
+            left: 43vw;
+            top: 2vh;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            color: white;
+        }      
+    </style>
 
-<div class="signup-page">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<div style="TEXT-ALIGN: center">
+    <div class="signup-page"></div>
+    <h1>Sign up</h1>
     <div class="form">
-        <form class="register-form">
+        <form class="login-form" action="{% url 'signup'%}" method="POST">
+        {% csrf_token %}
         <input type="text" placeholder="Username" name="username"/>
         <br>
         <input type="password" placeholder="Password" name="password1"/>
+        <br>
         <input type="password" placeholder="Confirm password" name="password2"/>
-        <button>Create account</button>
+        <br><br>
+        <button type="button" class="btn btn-success btn-sm">Create account</button>
         </form>
     </div>
-<div>
+</div>
