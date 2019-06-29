@@ -6,6 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>ECO-ZERO</title>
     <style>
+        @font-face { font-family: 'LotteMartHappy'; font-style: normal; font-weight: 400; src: url('//cdn.jsdelivr.net/korean-webfonts/1/corps/lottemart/LotteMartHappy/LotteMartHappyMedium.woff2') format('woff2'), url('//cdn.jsdelivr.net/korean-webfonts/1/corps/lottemart/LotteMartHappy/LotteMartHappyMedium.woff') format('woff'); } @font-face { font-family: 'LotteMartHappy'; font-style: normal; font-weight: 700; src: url('//cdn.jsdelivr.net/korean-webfonts/1/corps/lottemart/LotteMartHappy/LotteMartHappyBold.woff2') format('woff2'), url('//cdn.jsdelivr.net/korean-webfonts/1/corps/lottemart/LotteMartHappy/LotteMartHappyBold.woff') format('woff'); } .lottemarthappy * { font-family: 'LotteMartHappy', sans-serif; }
+        @font-face { font-family: 'KOMACON'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_seven@1.2/KOMACON.woff') format('woff'); font-weight: normal; font-style: normal; }
         body {
             background-image : url('https://trello-attachments.s3.amazonaws.com/5d173ac4bd68ae357e5ee6b1/5d1755d38824792f573ecf92/581e5f3d63be11c5d995b9a7ae5af1df/image.png');
             margin: 0;
@@ -13,15 +15,16 @@
         }
         .main {
             background-color: white;
-            height: 80vh;
+            height: 76vh;
             margin-top: 10vh;
-            margin-bottom: 10vh;
+            margin-bottom: 13vh;
         }
         .ecoHeader{
             position: absolute;
             color: white;
-            left: 43vw;
-            top: 2vh;
+            font-family: 'LotteMartHappy';
+            left: 40vw;
+            top: 3vh;
             margin: 0;
             padding: 0;
         }
@@ -32,41 +35,77 @@
         }
         .myLog{
             position: absolute;
-            top: 45vh;
-            left: 70vw;
+            top: 35vh;
+            left: 65vw;
+            font-family: 'LotteMartHappy';
+            font-size: 25;
+        }
+        .comment{
+            position: absolute;
+            top: 50vh;
+            left: 10vw;
+            color: white;
+            text-shadow: 3px 3px 3px black;
+            font-family: 'KOMACON';
         }
     </style>
 </head>
 <body>
-    <h1 class="ecoHeader">ECO-ZERO</h1>
+    <h1 class="ecoHeader">E C O - Z E R O</h1>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <li class="breadcrumb-item"></li>
  
-    <a href="{% url 'signup' %}" class="btn btn-lg active btn-outline-success float-right" role="button" aria-pressed="true">회원가입</a>
-
     {% if user.is_authenticated %}
-    <a href="{% url 'logout' %}" class="btn btn-lg active btn-outline-success float-right" role="button" aria-pressed="true">로그아웃</a>
+    <a href="{% url 'logout' %}" class="btn btn-sm active btn-outline-success float-right" role="button" aria-pressed="true">로그아웃</a>
     {% else %}
-    <a href="{% url 'login' %}" class="btn btn-lg active btn-outline-success float-right" role="button" aria-pressed="true">로그인</a>
+    <a href="{% url 'login' %}" class="btn btn-sm active btn-outline-success float-right" role="button" aria-pressed="true">로그인</a>
+    <a href="{% url 'signup' %}" class="btn btn-sm active btn-outline-success float-right" role="button" aria-pressed="true">회원가입</a>
     {% endif %}
     {% comment %} 메인 페이지 컨텐츠 넣는 곳 {% endcomment %}
+    {% if user.is_authenticated %}
     <div class="main">
-        <img src="https://trello-attachments.s3.amazonaws.com/5d177650e2ac6b4fcc958412/1000x625/5ae854d0023e453e84eef07efe5d03db/image.png" alt="TreeLv5" width="50%" id="mainTree">
+        {% if level == 0 %}
+        <img src="https://trello-attachments.s3.amazonaws.com/5d177650e2ac6b4fcc958412/1003x625/99073012066174a3e2584dbf6e66ed0a/image.png" alt="TreeLv0" width="50%" id="mainTree">
+        {% elif level == 1%}
+        <img src="https://trello-attachments.s3.amazonaws.com/5d177650e2ac6b4fcc958412/1000x625/db0684c9e4306b4422bce682581bd848/image.png" alt="TreeLv1" width="50%" id="mainTree">
+        {% elif level == 2%}
+        <img src="https://trello-attachments.s3.amazonaws.com/5d177650e2ac6b4fcc958412/1000x625/0aeaaeb0757875501e814fab7288992b/image.png" alt="TreeLv2" width="50%" id="mainTree">
+        {% elif level == 3%}
+        <img src="https://trello-attachments.s3.amazonaws.com/5d177650e2ac6b4fcc958412/1000x625/06853ea46f1016537b8a159b2bfdec09/image.png" alt="TreeLv3" width="50%" id="mainTree">
+        {% elif level >= 4%}
+        <img src="https://trello-attachments.s3.amazonaws.com/5d177650e2ac6b4fcc958412/1000x625/5ae854d0023e453e84eef07efe5d03db/image.png" alt="TreeLv4" width="50%" id="mainTree">
+        {% endif %}
+        <div class="progress" style="margin-left: 30vw; margin-right: 30vw;">
+            <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: {{exp}}%" aria-valuenow="{{exp}}" aria-valuemin="0" aria-valuemax="100">{{exp}}</div>
+        </div>
+        <br>
+        <div class="col-sm 20" style="text-align:center;">
+        <a href="{% url 'checkpage' %}" class="btn btn-lg active btn-outline-success float-none" role="button" aria-pressed="true">Check</a>
+        </div>
         <div class="myLog">
 
             <!-- 이부분 변경 해야함-->
-            <h3>오늘 : 3그루</h3>
-            <h3>이번주 : 23그루</h3>
-            <h3>이번달 : 93그루</h3>
-            {% if user.is_authenticated %}
-            <h3>{{user.vote}}</h3>
-            {% endif %}
-        </div>
+            <h3>오늘 : {{profile.vote}}</h3>
+            <h3>누적 : {{profile.accumulate}}</h3>
+            <br>   
+            <h2>당신이 살린 나무는</h2>
+            <span style="font-size:60px; color:DodgerBlue;" > {{level}} 그루</span>
+            <span style="font-size:33px"> 입니다.</span>
         <br>
         <br>
-        <div class="col-sm 19" style="text-align:center;">
-        <a href="{% url 'checkpage' %}" class="btn btn-lg active btn-outline-success float-none" role="button" aria-pressed="true">check</a>
+
+      
+        {% else %}
+        <div class="comment" style="font-size: 30px;">
+            텀블러 사용 1번으로 나무 0.25그루를 살릴 수 있습니다.<br>
+            대중교통 이용 1번으로 나무 1.5그루를 살릴 수 있습니다.<br>
+            에코백 사용 1번으로 나무 0.25그루를 살릴 수 있습니다.<br>
+            </p>
         </div>
+        </div>
+       
+
+        {% endif %}
     </div>
 </body>
 </html>

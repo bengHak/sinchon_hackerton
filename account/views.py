@@ -28,7 +28,10 @@ def login(request):
         password = request.POST['password']
         user = auth.authenticate(request, username=username, password=password)
         if user is not None:
+            profile = Profile.objects.get(user=user)
             auth.login(request, user)
+            print(profile.vote)
+            vote_num = profile.vote
             return redirect('home')
         else:
             return render(request, 'login.html', {'error': 'username or password is incorrect.'})
@@ -37,10 +40,9 @@ def login(request):
 
 
 def logout(request):
-    if request.method =='POST':
-        auth.logout(request)
-        return redirect('home')
-    return render(request,'home.html')
+    print('Loggin out {}'.format(request.user))
+    auth.logout(request)
+    return redirect('home')
 
 '''
 from django.http import HttpResponseRedirect

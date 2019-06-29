@@ -26,4 +26,5 @@ urlpatterns = [
     path('logout/', account.views.logout, name="logout"),
     path('', board.views.home, name="home"),
     path('checkpage/',checkpage.views.checkpage,name='checkpage'),
+    path('sum/', checkpage.views.sum, name="sum"),
 ]
